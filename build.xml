@@ -1,0 +1,22 @@
+<project name="dgraph" default="package">
+
+
+  <property file="version.properties"/>
+
+
+  <target name="clean">
+    <delete>
+      <fileset dir="." includes="*.jar"/>
+    </delete>
+  </target>
+
+
+  <target name="package">
+    <jar jarfile="dgraph-${version}.jar">
+      <path location="LICENSE"/>
+      <fileset dir="src" includes="**" excludes="test/**"/>
+    </jar>
+  </target>
+
+
+</project>
