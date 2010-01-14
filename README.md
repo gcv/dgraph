@@ -4,11 +4,13 @@ This code is inspired by Kenny Tilton's Cells project
 (http://common-lisp.net/project/cells/).
 
 dgraph aims to offer a (mostly) pure functional data structure whose nodes
-behave like cells in a spreadsheet, i.e., they form a dependency graph. In
-typical use, computed nodes calculate their values lazily when needed and cache
-them. Changing the value of a node does not destructively modify the graph;
-instead, it returns a new graph with the node's value changed and the node's
-dependent (child) values invalidated.
+behave like cells in a spreadsheet, i.e., they form a dependency graph. This
+data structure has two kinds of nodes: stored and computed. Stored nodes contain
+constant values, whereas computed nodes behave more like functions. In typical
+use, computed nodes calculate and cache their values lazily, when
+needed. Changing the value of a stored node does not destructively modify the
+graph; instead, it returns a new graph with the node's value changed and the
+node's dependent (child) computed values invalidated.
 
 This data structure has many uses. In particular, it helps eliminate repeated
 clutter in UI code where the state of a display element may depend on the state
@@ -39,9 +41,9 @@ This returns `[1 2 3 10 2 12 15]`. It first creates a dependency graph (graph1)
 with two stored nodes, :a and :b, and a lazily computed node :c which depends on
 :a and :b (meaning :c is a child of :a and :b). The value of :c is computed only
 when first retrieved, and cached thereafter. It then extends graph1 into graph2
-by "changing" the value of :a and adding a new stored node, :d. Note that graph1
-remains unmodified. graph1 and graph2 share as much structure as possible, just
-like Clojure's built-in persistent data structures.
+by assigning a new value to :a and adding a new stored node, :d. Note that
+graph1 remains unmodified. graph1 and graph2 share as much structure as
+possible, just like Clojure's built-in persistent data structures.
 
 
 
