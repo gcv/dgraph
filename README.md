@@ -45,6 +45,10 @@ by assigning a new value to :a and adding a new stored node, :d. Note that
 graph1 remains unmodified. graph1 and graph2 share as much structure as
 possible, just like Clojure's built-in persistent data structures.
 
+This example is available in `src/examples/dgraph/simple.clj`.
+`src/examples/dgraph/swing.clj` shows how dependency graphs can be handy in GUI
+programming, applied to Swing.
+
 
 
 ## Getting Started
