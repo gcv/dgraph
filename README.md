@@ -78,6 +78,7 @@ verbosely as:
            (dependency-graph :b))))
 
 The different computed nodes have the following semantics:
+
  - Lazy nodes evaluate only when retrieved; once computed, they cache their
    values and use the cache on subsequent retrieval. An invalidated lazy node
    evaluates only when subsequently retrieved.
