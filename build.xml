@@ -14,7 +14,7 @@
   <target name="package">
     <jar jarfile="dgraph-${version}.jar">
       <path location="LICENSE"/>
-      <fileset dir="src" includes="**" excludes="test/**"/>
+      <fileset dir="src" includes="**"/>
     </jar>
   </target>
 

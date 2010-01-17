@@ -45,9 +45,9 @@ by assigning a new value to :a and adding a new stored node, :d. Note that
 graph1 remains unmodified. graph1 and graph2 share as much structure as
 possible, just like Clojure's built-in persistent data structures.
 
-This example is available in `src/examples/dgraph/simple.clj`.
-`src/examples/dgraph/swing.clj` shows how dependency graphs can be handy in GUI
-programming, applied to Swing.
+This example is available in `examples/examples/dgraph/simple.clj`.
+`examples/examples/dgraph/swing.clj` shows how dependency graphs can be handy in
+GUI programming, applied to Swing.
 
 
 
@@ -59,11 +59,24 @@ computed nodes which execute code on more than one thread (see the Documentation
 and Limitations sections below). Clojure 1.1 is also required for the dgraph
 test suite.
 
+
+### Option 1: Ant
+
 1. Clone the dgraph Git repository.
-2. Run `ant package`. Please note that dgraph is not AOT compiled. (It is a tiny
-   library.)
-3. Copy the dgraph jar to wherever you normally keep Clojure dependencies. Make
-   sure to add the jar to your project's classpath.
+2. Run `ant package`.
+3. Copy the resulting dgraph jar to wherever you normally keep Clojure
+   dependencies. Make sure to add the jar to your project's classpath.
+
+
+### Option 2: Leiningen
+
+Add a dependency on `[dgraph "1.0.0"]` to your `project.clj` file. Leiningen
+will pull the dgraph dependency from Clojars.
+
+
+### Option 3: Maven
+
+dgraph is available on Clojars.
 
 
 
