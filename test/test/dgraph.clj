@@ -32,6 +32,13 @@
     (is (= (graph2 :e) 5))))
 
 
+(deftest stored-maps
+  (let [graph1 (dg/make-dgraph :m {:inner1 {:inner2 {:a 1 :b [2 3]}}})
+        graph2 (dg/update-in-node graph1 :m [:inner1 :inner2 :b] conj 4)
+        graph3 (dg/assoc-in-node graph2 :m [:inner1 :inner2 :c] 5)]
+    (is (= (graph3 :m) {:inner1 {:inner2 {:a 1 :b [2 3 4] :c 5}}}))))
+
+
 (deftest computed-lazy
   (let [side-effect (atom 0)
         graph (atom (dg/make-dgraph :a 1

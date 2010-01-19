@@ -124,6 +124,11 @@ convenience when storing the graph in an atom or ref:
       (dosync (alter graph2 dg/setn :a 10))
       [(@graph1 :a) (@graph2 :a)])
 
+For manipulating maps stored in dependency graphs, dg/assoc-in-node and
+dg/update-in-node convenience functions correspond to the assoc-in and update-in
+functions built into Clojure. Please see `examples/examples/dgraph/simple.clj`
+for sample usage.
+
 
 
 ## Limitations

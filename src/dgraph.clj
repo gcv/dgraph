@@ -167,9 +167,27 @@
   (apply dgraph args))
 
 
+;; Suggested by Markus Gustavsson to simplify manipulating maps stored in dgraph
+;; nodes (http://groups.google.com/group/clojure/msg/46cc8b91f40d0d6a).
+(defn assoc-in-node
+  "assoc-in variant which works on dgraphs. map-node-name is a node on the graph
+   which contains a map."
+  [dgraph map-node-name ks v]
+  (dgraph map-node-name (assoc-in (dgraph map-node-name) ks v)))
+
+
+;; Suggested by Markus Gustavsson to simplify manipulating maps stored in dgraph
+;; nodes (http://groups.google.com/group/clojure/msg/46cc8b91f40d0d6a).
+(defn update-in-node
+  "update-in variant which works on dgraphs. map-node-name is a node on the graph
+   which contains a map."
+  [dgraph map-node-name ks f & args]
+  (dgraph map-node-name (apply update-in (dgraph map-node-name) ks f args)))
+
+
 
 ;;; ----------------------------------------------------------------------------
-;;; constructor, accessor, setter
+;;; constructor
 ;;; ----------------------------------------------------------------------------
 
 (defn make-dgraph* [nodes]
