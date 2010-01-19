@@ -70,13 +70,20 @@ test suite.
 
 ### Option 2: Leiningen
 
-Add a dependency on `[dgraph "1.0.0"]` to your `project.clj` file. Leiningen
+Add a dependency on `[dgraph "1.1.0"]` to your `project.clj` file. Leiningen
 will pull the dgraph dependency from Clojars.
 
 
 ### Option 3: Maven
 
-dgraph is available on Clojars.
+Add a dependency to your `pom.xml` file. Maven will pull the dgraph dependency
+from Clojars.
+
+    <dependency>
+      <groupId>dgraph</groupId>
+      <artifactId>dgraph</artifactId>
+      <version>1.1.0</version>
+    </dependency>
 
 
 
