@@ -242,3 +242,46 @@
       (is (= @side-effect-combine3 2))
       (is (= @side-effect-concat3 1))
       (is (= @side-effect-mult3 2)))))
+
+
+(deftest multistep-transitive-dependencies-1
+  (let [g1 (dg/make-dgraph :a 0 :b (dg/eager #(inc (% :a))))]
+    (is (= (g1 :a) 0))
+    (is (= (g1 :b) 1))
+    (let [g2 (g1 :a 3)]
+      (is (= (g2 :a) 3))
+      (is (= (g2 :b) 4))
+      (is (= (g1 :b) 1))
+      (let [g3 (g1 :a 7)]
+        (is (= (g3 :a) 7))
+        (is (= (g3 :b) 8))
+        (is (= (g2 :b) 4))
+        (is (= (g1 :b) 1)))
+      (let [g4 (g2 :a 7)]
+        (is (= (g4 :a) 7))
+        (is (= (g4 :b) 8))
+        (is (= (g2 :b) 4))
+        (is (= (g1 :b) 1))))))
+
+
+(deftest multistep-transitive-dependencies-2
+  (let [g1 (dg/make-dgraph :a 0 :b (dg/lazy #(inc (% :a))))
+        g2 (g1 :a 3)
+        g3 (g1 :a 7)]
+    (is (= (g3 :a) 7))
+    (is (= (g3 :b) 8))
+    (is (= (g3 :b) 8))
+    (is (= (g2 :b) 4))
+    (is (= (g1 :b) 1))))
+
+
+(deftest multistep-transitive-dependencies-3
+  (let [g1 (dg/make-dgraph :a 1 :b (dg/lazy #(inc (% :a))))]
+    (is (= 1 (g1 :a)))
+    (is (= 2 (g1 :b)))
+    (let [g2 (g1 :a 10)]
+      (is (= 2 (g1 :b)))
+      (is (= 11 (g2 :b))))
+    (let [g3 (g1 :a 100)]
+      (is (= 2 (g1 :b)))
+      (is (= 101 (g3 :b))))))

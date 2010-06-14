@@ -22,10 +22,7 @@
 (defn stored [stored-val]
   (let [node-name *node-name*
         node-state (atom (struct-map node :name node-name
-                                          :kind :stored
-                                          :quine (delay (binding [*node-name* node-name]
-                                                          (stored stored-val)))
-                                          :children #{}))
+                                          :kind :stored))
         node-fn (fn node-fn
                   ([_] stored-val)
                   ([] node-state))]
@@ -36,6 +33,7 @@
   (let [node-name *node-name*
         node-state (atom (struct-map node :name node-name
                                           :kind kind
+                                          :val-fn val-fn
                                           :quine (delay (binding [*node-name* node-name]
                                                           (computed kind val-fn)))
                                           :cache-valid? false
@@ -102,10 +100,18 @@
 (defn- invalidate [nodes node-name]
   (let [node-fn (nodes node-name)
         node-state (node-fn)
+        node-kind (@node-state :kind)
+        node-val-fn (@node-state :val-fn)
         node-quine (@node-state :quine)
-        node-kids (@node-state :children)]
+        node-kids (@node-state :children)
+        forced-quine (force node-quine)]
+    ;; XXX: The quine for a computed node must be restored here, otherwise the
+    ;; delayed value is cached and will cause bad state. See all
+    ;; multistep-transitive-dependencies tests for cases which must not fail.
+    (swap! node-state assoc :quine (delay (binding [*node-name* node-name]
+                                            (computed node-kind node-val-fn))))
     (reduce merge
-            {node-name (force node-quine)}
+            {node-name forced-quine}
             (map #(invalidate nodes %) node-kids))))
 
 
