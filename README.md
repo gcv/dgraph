@@ -70,7 +70,7 @@ test suite.
 
 ### Option 2: Leiningen
 
-Add a dependency on `[dgraph "1.1.0"]` to your `project.clj` file. Leiningen
+Add a dependency on `[dgraph "1.1.1"]` to your `project.clj` file. Leiningen
 will pull the dgraph dependency from Clojars.
 
 
@@ -82,7 +82,7 @@ from Clojars.
     <dependency>
       <groupId>dgraph</groupId>
       <artifactId>dgraph</artifactId>
-      <version>1.1.0</version>
+      <version>1.1.1</version>
     </dependency>
 
 
