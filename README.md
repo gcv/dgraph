@@ -54,10 +54,10 @@ GUI programming, applied to Swing.
 ## Getting Started
 
 dgraph has no dependencies except Clojure itself. dgraph works with Clojure 1.0,
-1.1, and 1.2. Clojure versions 1.1 or later are recommended, however, as
+1.1, 1.2, and 1.2.1. Clojure versions 1.1 or later are recommended, however, as
 bound-fn is required for computed nodes which execute code on more than one
-thread (see the Documentation and Limitations sections below). Clojure 1.1 is
-also required for the dgraph test suite.
+thread (see the Documentation and Limitations sections below). Clojure 1.1 or
+later is also required for the dgraph test suite.
 
 
 ### Option 1: Ant
@@ -70,7 +70,7 @@ also required for the dgraph test suite.
 
 ### Option 2: Leiningen
 
-Add a dependency on `[dgraph "1.2.0"]` to your `project.clj` file. Leiningen
+Add a dependency on `[dgraph "1.2.1"]` to your `project.clj` file. Leiningen
 will pull the dgraph dependency from Clojars.
 
 
