@@ -150,6 +150,14 @@ for sample usage.
 
 
 
+## Tasks
+
+* Quine construction should be a separate function. The code currently repeats
+  in computed node construction, and also in invalidation.
+* Look into memory leak in building up a large augmented dependency.
+
+
+
 ## License
 
 dgraph is distributed under the MIT license.
