@@ -10,8 +10,8 @@
 (defstruct node :name :kind :quine :cache-valid? :cache :children)
 
 
-(def #^{:private true} *node-name* nil)
-(def *get-node-caller* nil)
+(def #^{:private true :dynamic true} *node-name* nil)
+(def #^{:dynamic true}  *get-node-caller* nil)
 
 
 
