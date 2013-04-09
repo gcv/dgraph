@@ -1,4 +1,5 @@
-(defproject dgraph "1.2.1"
+(defproject dgraph "1.2.2"
   :description "A dependency graph library for Clojure."
-  :dependencies [[org.clojure/clojure "1.2.1"]]
-  :dev-dependencies [[swank-clojure "1.3.1"]])
+  :url "https://github.com/gcv/dgraph"
+  :exclusions [org.clojure/clojure]
+  :dependencies [[org.clojure/clojure "1.5.0"]])

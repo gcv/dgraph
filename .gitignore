@@ -1,2 +1,4 @@
+.lein-failures
 *.jar
 classes/
+target/
